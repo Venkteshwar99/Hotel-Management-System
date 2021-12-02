@@ -17,5 +17,8 @@ spring:
         predicates:
         - Path=/manager/**
         
-   
+      - id: reservationModule
+        uri: http://localhost:8084/
+        predicates:
+        - Path=/reservation/**
     

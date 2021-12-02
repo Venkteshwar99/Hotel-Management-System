@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.Manager.Models.Room;
+import com.Manager.Models.RoomList;
 
 
 
@@ -22,7 +23,7 @@ public interface RoomService {
 	public List<Room> getAllRooms();
 
 	
-	public List<Room> getAvailable();
+	public RoomList getAvailable();
 
 
 }

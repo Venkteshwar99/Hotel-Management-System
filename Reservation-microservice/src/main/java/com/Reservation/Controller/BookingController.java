@@ -39,7 +39,7 @@ public class BookingController {
 
 
 	@PutMapping("/updateReservation")
-	public Object updateRoom(@RequestBody Booking book)
+	public Object updateBooking(@RequestBody Booking book)
 	{
 		return this.service.updateBooking(book); 
 	}

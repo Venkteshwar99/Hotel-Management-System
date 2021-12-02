@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Manager.Models.Room;
+import com.Manager.Models.RoomList;
 import com.Manager.Services.ReturnAllRooms;
 import com.Manager.Services.RoomService;
 
@@ -66,16 +67,16 @@ public class RoomController {
 	
 	
 	@GetMapping("/AvailableRoom")
-	public List<Room> getAvailableRooms()
+	public RoomList getAvailableRooms()
 	{
 		return this.service.getAvailable();
 	}
 	
-	@GetMapping("/AvailableRoomCount")
+	/*@GetMapping("/AvailableRoomCount")
 	public String getAvailableRoomsCount()
 	{
 		return "Available Rooms are: "+this.service.getAvailable().stream().count();
-	}
+	} */
 }
 
 
