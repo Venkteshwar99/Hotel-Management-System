@@ -18,7 +18,7 @@ import com.Manager.Models.StaffList;
 
 
 @RestController
-@RequestMapping("/manager/Staff")
+@RequestMapping("/manager/staff")
 public class ManagerStaffController {
 	
 	@Autowired

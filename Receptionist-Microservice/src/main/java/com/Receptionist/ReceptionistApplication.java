@@ -14,10 +14,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class ReceptionEndUser3Application {
+public class ReceptionistApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReceptionEndUser3Application.class, args);
+		SpringApplication.run(ReceptionistApplication.class, args);
 	}
 	@Bean
 	public Docket swaggerConfiguration() {
