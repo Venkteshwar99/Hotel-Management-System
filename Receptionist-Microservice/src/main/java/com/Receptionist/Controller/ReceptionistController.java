@@ -29,38 +29,38 @@ public class ReceptionistController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-//Creating/Adding Washer
+//Creating/Adding Receptionist
 	
 	@PostMapping("/addReceptionist")
-	private ResponseEntity<?> saveOwnerInfo(@RequestBody ReceptionistInfo managerInfo) {
-		String email = managerInfo.getEmail();
-		String password = managerInfo.getPassword();
-		ReceptionistInfo manager1 = new ReceptionistInfo();
-		manager1.setEmail(email);
-		manager1.setPassword(password);
+	private ResponseEntity<?> saveOwnerInfo(@RequestBody ReceptionistInfo receptionistInfo) {
+		String email = receptionistInfo.getEmail();
+		String password = receptionistInfo.getPassword();
+		ReceptionistInfo receptionist1 = new ReceptionistInfo();
+		receptionist1.setEmail(email);
+		receptionist1.setPassword(password);
 		try {
 
-			receptionistRepo.save(managerInfo);
+			receptionistRepo.save(receptionistInfo);
 		} catch (Exception e) {
 			return ResponseEntity.ok(new  ReceptionistAuthResponse("Error creating Receptionist" + email));
 		}
 		return ResponseEntity.ok(new ReceptionistAuthResponse("Successfully created Receptionist " + email));
 	}
 
-//authenticating washer
+//authenticating receptionist
 	@PostMapping("/auth")
-	private ResponseEntity<?> authWasher(@RequestBody ReceptionistInfo managerInfo) {
-		String email = managerInfo.getEmail();
-		String password = managerInfo.getPassword();
+	private ResponseEntity<?> authReceptionist(@RequestBody ReceptionistInfo receptionistInfo) {
+		String email = receptionistInfo.getEmail();
+		String password = receptionistInfo.getPassword();
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 		} catch (Exception e) {
-			return ResponseEntity.ok(new ReceptionistAuthResponse("Error during Manager Authentication" + email));
+			return ResponseEntity.ok(new ReceptionistAuthResponse("Error during Receptionist Authentication" + email));
 		}
-		return ResponseEntity.ok(new ReceptionistAuthResponse("Successfully Authenticated Manager" + email));
+		return ResponseEntity.ok(new ReceptionistAuthResponse("Successfully Authenticated Receptionist" + email));
 	}
 
-//Reading all washer
+//Reading all receptionist
 	@GetMapping("/receptionist")
 	public List<ReceptionistInfo> findAllReceptionist() {
 		return receptionistService.getReceptionistInfos();

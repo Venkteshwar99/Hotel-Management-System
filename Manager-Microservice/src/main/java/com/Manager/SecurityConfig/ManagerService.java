@@ -19,8 +19,8 @@ public class ManagerService implements UserDetailsService {
 	private ManagerRepo managerRepo;
 
 	/*
-	 * //for creating/adding washer[ public Washer addWasher(Washer washer) { return
-	 * washerRepository.save(washer); }
+	 * //for creating/adding Manager[ public Manager addManager(Manager manager) { return
+	 * managerRepo.save(manager); }
 	 */
 //
 	public List<ManagerInfo> getManagerInfos() {

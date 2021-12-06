@@ -18,8 +18,8 @@ public class OwnerService implements UserDetailsService {
 	private OwnerRepo ownerRepo;
 
 	/*
-	 * //for creating/adding washer[ public Washer addWasher(Washer washer) { return
-	 * washerRepository.save(washer); }
+	 * //for creating/adding owner[ public Owner addOwner(Owner owner) { return
+	 * OwnerRepo.save(owner); }
 	 */
 //
 	public List<OwnerInfo> getOwnerInfos() {

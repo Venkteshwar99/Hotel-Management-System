@@ -32,11 +32,7 @@ public class OwnerController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-//Creating/Adding Washer
-	/*
-	 * @PostMapping("/addwasher") public Washer saveWasher(@RequestBody Washer
-	 * washer) { return washerService.addWasher(washer); }
-	 */
+//Creating/Adding owner
 	@PostMapping("/addOwner")
 	private ResponseEntity<?> saveOwnerInfo(@RequestBody OwnerInfo ownerInfo) {
 		String email = ownerInfo.getEmail();
@@ -53,9 +49,9 @@ public class OwnerController {
 		return ResponseEntity.ok(new OwnerAuthResponse("Successfully created Owner " + email));
 	}
 
-//authenticating washer
+//authenticating Owner
 	@PostMapping("/auth")
-	private ResponseEntity<?> authWasher(@RequestBody OwnerInfo ownerInfo) {
+	private ResponseEntity<?> authOwner(@RequestBody OwnerInfo ownerInfo) {
 		String email = ownerInfo.getEmail();
 		String password = ownerInfo.getPassword();
 		try {
@@ -66,9 +62,9 @@ public class OwnerController {
 		return ResponseEntity.ok(new OwnerAuthResponse("Successfully Authenticated Owner" + email));
 	}
 
-//Reading all washer
+//Reading all Owner
 	@GetMapping("/owner")
-	public List<OwnerInfo> findAllWashers() {
+	public List<OwnerInfo> findAllOwners() {
 		return ownerService.getOwnerInfos();
 	}
 

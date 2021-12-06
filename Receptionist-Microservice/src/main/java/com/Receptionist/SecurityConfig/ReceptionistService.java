@@ -19,25 +19,21 @@ public class ReceptionistService implements UserDetailsService {
 	@Autowired
 	private ReceptionistRepo receptionistRepo;
 
-	/*
-	 * //for creating/adding washer[ public Washer addWasher(Washer washer) { return
-	 * washerRepository.save(washer); }
-	 */
-//
+	
 	public List<ReceptionistInfo> getReceptionistInfos() {
 // TODO Auto-generated method stub
-		List<ReceptionistInfo> managerInfos = receptionistRepo.findAll();
-		System.out.println("Getting Receptionist from DB" + managerInfos);
-		return managerInfos;
+		List<ReceptionistInfo> receptionistInfos = receptionistRepo.findAll();
+		System.out.println("Getting Receptionist from DB" + receptionistInfos);
+		return receptionistInfos;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		ReceptionistInfo foundedManager = receptionistRepo.findByEmail(username);
-		if (foundedManager == null)
+		ReceptionistInfo foundedReceptionist = receptionistRepo.findByEmail(username);
+		if (foundedReceptionist == null)
 			return null;
-		String Email = foundedManager.getEmail();
-		String Password = foundedManager.getPassword();
+		String Email = foundedReceptionist.getEmail();
+		String Password = foundedReceptionist.getPassword();
 		return new User(Email, Password, new ArrayList<>());
 	}
 }

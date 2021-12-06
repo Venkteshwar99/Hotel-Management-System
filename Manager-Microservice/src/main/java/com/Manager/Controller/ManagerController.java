@@ -29,7 +29,7 @@ public class ManagerController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-//Creating/Adding Washer
+//Creating/Adding Manager
 	
 	@PostMapping("/addManager")
 	private ResponseEntity<?> saveOwnerInfo(@RequestBody ManagerInfo managerInfo) {
@@ -47,9 +47,9 @@ public class ManagerController {
 		return ResponseEntity.ok(new ManagerAuthResponse("Successfully created Manager " + email));
 	}
 
-//authenticating washer
+//authenticating manager
 	@PostMapping("/auth")
-	private ResponseEntity<?> authWasher(@RequestBody ManagerInfo managerInfo) {
+	private ResponseEntity<?> authManager(@RequestBody ManagerInfo managerInfo) {
 		String email = managerInfo.getEmail();
 		String password = managerInfo.getPassword();
 		try {
@@ -60,7 +60,7 @@ public class ManagerController {
 		return ResponseEntity.ok(new ManagerAuthResponse("Successfully Authenticated Manager" + email));
 	}
 
-//Reading all washer
+//Reading all manager
 	@GetMapping("/manager")
 	public List<ManagerInfo> findAllManager() {
 		return managerService.getManagerInfos();
