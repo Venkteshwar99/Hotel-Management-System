@@ -3,12 +3,15 @@ package com.Reservation.Services;
 
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.Reservation.Models.Reservation;
+import com.Reservation.Models.Room;
 import com.Reservation.Repo.ReservationRepo;
 
 @Service
@@ -16,10 +19,23 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationRepo repos;
+	
+	@Autowired
+	private RestTemplate restTmp;
+
 
 	@Override
-	public Reservation addReservation(Reservation book) {
-		return repos.insert(book);
+	public String addReservation(Reservation book) {
+			Room room= restTmp.getForObject("http://Room-Microservice/rooms/findById/"+book.getRoomId(), Room.class);
+			if(room.getRoomAvl()) {
+				repos.insert(book);
+				room.setRoomAvl(false);
+				restTmp.put("http://Room-Microservice/rooms/updateRoom", room);
+				return "Room Number "+room.getRoomId()+" booked for Guest : ";
+			}
+			else {
+				return "Room Already Booked";
+			}
 		
 		
 	}

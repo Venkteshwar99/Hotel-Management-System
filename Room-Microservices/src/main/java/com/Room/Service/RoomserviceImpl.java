@@ -18,11 +18,11 @@ public class RoomserviceImpl implements Roomservice{
 	@Autowired
 	RoomMongodbRepos  roomMongodbRepo;
 
-	@Override
-	public Room addRoom(Room room) {
+	public void addRoom(Room room) {
 		// TODO Auto-generated method stub
-		return roomMongodbRepo.insert(room);
+		 roomMongodbRepo.insert(room);
 	}
+	
 
 	
 
@@ -49,7 +49,10 @@ public class RoomserviceImpl implements Roomservice{
 		
 		return roomMongodbRepo.findAll();
 	}
-
+public RoomserviceImpl (RoomMongodbRepos roomMongodbRepo) {
+	
+	this.roomMongodbRepo=roomMongodbRepo;
+}
 
 
 	@Override

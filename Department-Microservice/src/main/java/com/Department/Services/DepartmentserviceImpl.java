@@ -15,6 +15,10 @@ public class DepartmentserviceImpl implements Departmentservice {
 	@Autowired
 	private DepartmentRepo repo;
 
+	public DepartmentserviceImpl(DepartmentRepo repo2) {
+		this.repo=repo2;
+	}
+
 	@Override
 	public Department addDepartment(Department dept) {
 		return repo.insert(dept);

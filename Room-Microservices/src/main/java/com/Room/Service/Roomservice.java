@@ -13,7 +13,7 @@ import com.Room.Models.RoomList;
 
 public interface Roomservice {
 
-	public Room addRoom(Room room);
+	public void addRoom(Room room);
 
 	
 

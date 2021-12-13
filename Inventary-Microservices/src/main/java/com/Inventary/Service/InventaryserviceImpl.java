@@ -16,6 +16,10 @@ public class InventaryserviceImpl implements Inventaryservice {
 	@Autowired
 	InventaryRepo inventaryRepo;
 
+	public InventaryserviceImpl(InventaryRepo repo) {
+		this.inventaryRepo=repo;
+	}
+
 	@Override
 	public Inventary addInventary(Inventary inv) {
 		// TODO Auto-generated method stub

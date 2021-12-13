@@ -17,6 +17,10 @@ public class GuestserviceImpl implements Guestservice {
 	@Autowired
 	GuestRepo guestRepo;
 
+	public GuestserviceImpl(GuestRepo repo) {
+		this.guestRepo= repo;
+	}
+
 	@Override
 	public Guest addGuest(Guest guest) {
 		return guestRepo.insert(guest);

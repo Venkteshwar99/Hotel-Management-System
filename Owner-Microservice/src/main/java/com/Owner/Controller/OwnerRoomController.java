@@ -13,7 +13,7 @@ import com.Owner.Models.Room;
 import com.Owner.Models.RoomList;
 
 @RestController
-@RequestMapping("/Owner/Room")
+@RequestMapping("/owner/Room")
 public class OwnerRoomController {
 	
 	@Autowired

@@ -31,8 +31,8 @@ public class RoomController {
 	}
 
 	@PostMapping("/addRoom")
-	public Room addRoom(@RequestBody Room room) {
-		return this.roomService.addRoom(room);
+	public void addRoom(@RequestBody Room room) {
+		 this.roomService.addRoom(room);
 	}
 
 	@GetMapping("/findAllRoom")

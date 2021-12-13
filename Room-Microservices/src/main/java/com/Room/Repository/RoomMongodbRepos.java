@@ -1,6 +1,7 @@
 package com.Room.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -17,6 +18,8 @@ public interface RoomMongodbRepos extends MongoRepository<Room, Long>  {
 	
 	@Query("{roomAvl:true}")
 	List<Room>findAvailable();
+
+	
 	
 	
 	

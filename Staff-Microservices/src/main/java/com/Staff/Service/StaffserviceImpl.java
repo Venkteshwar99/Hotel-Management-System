@@ -18,27 +18,34 @@ public class StaffserviceImpl implements Staffservice{
 	@Autowired
 	StaffMongodbRepo staffmongodbRepo;
 
+
+
+
+	public StaffserviceImpl(StaffMongodbRepo repo) {
+	   this.staffmongodbRepo= repo;
+	}
+
 	@Override
 	public Staff addEmp(Staff emp) {
-		// TODO Auto-generated method stub
+		
 		return staffmongodbRepo.insert(emp);
 	}
 
 	@Override
 	public List<Staff> getAllEmp() {
-		// TODO Auto-generated method stub
+		
 		return staffmongodbRepo.findAll();
 	}
 
 	@Override
 	public Optional<Staff> getEmp(long parseLong) {
-		// TODO Auto-generated method stub
+		
 		return staffmongodbRepo.findById(parseLong);
 	}
 
 	@Override
 	public Staff updateEmp(Staff emp) {
-		// TODO Auto-generated method stub
+		
 		return staffmongodbRepo.save(emp);
 	}
 
