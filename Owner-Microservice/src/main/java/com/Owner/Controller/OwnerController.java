@@ -1,71 +1,97 @@
 package com.Owner.Controller;
 
-import java.util.List;
-import java.util.Optional;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Owner.Models.JwtRequest;
+import com.Owner.Models.JwtResponse;
 import com.Owner.Models.OwnerInfo;
 import com.Owner.Repo.OwnerRepo;
-import com.Owner.SecurityConfig.OwnerAuthResponse;
-import com.Owner.SecurityConfig.OwnerService;
+import com.Owner.Service.OwnerService;
+import com.Owner.helper.JwtUtil;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
-@RequestMapping("/owner")
 public class OwnerController {
 	@Autowired
-	private OwnerService ownerService;
+	private OwnerService userservice;
 	@Autowired
 	private OwnerRepo ownerRepo;
 	@Autowired
-	private AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticates;;
+	@Autowired
+	JwtUtil jwtutil;
 
-//Creating/Adding owner
-	@PostMapping("/addOwner")
-	private ResponseEntity<?> saveOwnerInfo(@RequestBody OwnerInfo ownerInfo) {
-		String email = ownerInfo.getEmail();
-		String password = ownerInfo.getPassword();
-		OwnerInfo owner1 = new OwnerInfo();
-		owner1.setEmail(email);
-		owner1.setPassword(password);
+	@PostMapping("/subs")
+	private ResponseEntity<JwtResponse>subscribeClient(@RequestBody JwtRequest authreq){
+		OwnerInfo usermodel =new OwnerInfo();
+		System.out.println(authreq);
+
+		
+		usermodel.setUsername(authreq.getUsername());
+		usermodel.setPassword(authreq.getPassword());
+		usermodel.setMobileNumber(authreq.getMobileNumber());
+		usermodel.setEmail(authreq.getEmail());
+		
+		
 		try {
-
-			ownerRepo.save(ownerInfo);
-		} catch (Exception e) {
-			return ResponseEntity.ok(new OwnerAuthResponse("Error creating Owner" + email));
+			ownerRepo.save(usermodel);
 		}
-		return ResponseEntity.ok(new OwnerAuthResponse("Successfully created Owner " + email));
-	}
+		catch(Exception e){
+			return new ResponseEntity<JwtResponse>(new JwtResponse
+					("Error during subscription ") , HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<JwtResponse>(new JwtResponse
+				("Successful subs for client " +authreq.getUsername()), HttpStatus.OK);
 
-//authenticating Owner
+	}
+	
+	
 	@PostMapping("/auth")
-	private ResponseEntity<?> authOwner(@RequestBody OwnerInfo ownerInfo) {
-		String email = ownerInfo.getEmail();
-		String password = ownerInfo.getPassword();
+	private ResponseEntity<?> authenticateClient(@RequestBody JwtRequest authreq){
+		String email=authreq.getEmail();
+		String password= authreq.getPassword();
+		System.out.println(authreq);
+		
+			authenticates.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+				
+		
+		
+		UserDetails userdetails= userservice.loadUserByUsername(email);
+		
+		String jwt = jwtutil.generateToken(userdetails);
+		
+		return ResponseEntity.ok(new JwtResponse(jwt));
+	}
+	
+	@GetMapping("/test")
+	private String testingtoken() {
 		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-		} catch (Exception e) {
-			return ResponseEntity.ok(new OwnerAuthResponse("Error during Owner Authentication" + email));
+			return "Testing Successful...!";	
 		}
-		return ResponseEntity.ok(new OwnerAuthResponse("Successfully Authenticated Owner" + email));
+		catch(Exception e) {
+			return "Please login first..!";
+		}
 	}
-
-//Reading all Owner
-	@GetMapping("/owner")
-	public List<OwnerInfo> findAllOwners() {
-		return ownerService.getOwnerInfos();
+	
+	@GetMapping("/dashboard")
+	private String dashboard() {
+		return "Welcome to dashboard...!";
 	}
-
+	
 }
+

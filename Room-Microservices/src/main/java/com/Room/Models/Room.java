@@ -12,6 +12,13 @@ public class Room {
 	private String roomType;
 	private String roomDesc;
 	private Boolean roomAvl;
+	private String imgsrc;
+	public String getImgsrc() {
+		return imgsrc;
+	}
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
+	}
 	public Long getRoomId() {
 		return roomId;
 	}

@@ -1,6 +1,7 @@
 package com.Receptionist.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,29 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+
 import com.Receptionist.Models.Room;
 import com.Receptionist.Models.RoomList;
 
 
 @RestController
-@RequestMapping("/reception/room")
+@RequestMapping("/receptionist/room")
 public class ReceptionRoomController {
 	
 	@Autowired
 	private RestTemplate restTemplate;
 	
 	
-	@PostMapping("/addRoom")
-	public Room addRoom(@RequestBody Room room) {
-		return restTemplate.postForObject("http://Room-Microservice/rooms/addRoom/", room, Room.class);
+
+	@PutMapping("/update/{id}")
+	public void updateRoom(@RequestBody Room room, @PathVariable long id)
+	{
+		restTemplate.put("http://Room-Microservice/rooms/update/"+id,room, Room.class);
+		
 	}
 	
+		
 	
-	@PutMapping("/updateRoom")
-	public Room updateRoom(@RequestBody Room room) {
-	 restTemplate.put("http://Room-Microservice/rooms/updateRoom/",room, Room.class);
-	 return room;
-	}
+	
 	
 	@DeleteMapping("/delete/{id}")
 	public String deleteRoom(@PathVariable("id") String id) {
@@ -41,7 +43,11 @@ public class ReceptionRoomController {
 		return "Deleted room "+id;
 	}
 	
-	
+	@GetMapping("/findRoomAvl")
+	public RoomList getRoomAvl() {
+
+	 return restTemplate.getForObject("http://Room-Microservice/rooms/findRoomAvl/", RoomList.class);
+	}
 	
 	
 	

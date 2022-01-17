@@ -11,11 +11,11 @@ import com.Room.Models.Room;
 
 
 
-
+//Repository that extends MongoRepository
 @Repository
 public interface RoomMongodbRepos extends MongoRepository<Room, Long>  {
 	
-	
+	//to specify a custom query
 	@Query("{roomAvl:true}")
 	List<Room>findAvailable();
 

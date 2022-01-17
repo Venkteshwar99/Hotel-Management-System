@@ -16,11 +16,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.Receptionist.Models.Guest;
 import com.Receptionist.Models.GuestList;
+import com.Receptionist.Models.Room;
 
 
 
 @RestController
-@RequestMapping("/reception/guest")
+@RequestMapping("/receptionist/guest")
 public class ReceptionGuestController {
 	
 	@Autowired
@@ -37,12 +38,18 @@ public class ReceptionGuestController {
 		return rest.postForObject("http://Guest-Microservice/Guest/addGuest/", guest, Guest.class);
 	}
 	
-	@PutMapping("/updateGuest")
-	public Guest updateGuest(@RequestBody Guest guest)
+
+	
+	@PutMapping("/update/{id}")
+	public void updateGuest(@RequestBody Guest guest, @PathVariable long id)
 	{
-		rest.put("http://Guest-Microservice/Guest/updateGuest/",guest, Guest.class);
-		return guest;
+		rest.put("http://Guest-Microservice/Guest/update/"+id,guest, Guest.class);
+		
 	}
+	
+	
+	
+	
 	
 	@DeleteMapping("/deleteGuest/{id}")
 	public String deleteGuestById(@PathVariable("id") String id)

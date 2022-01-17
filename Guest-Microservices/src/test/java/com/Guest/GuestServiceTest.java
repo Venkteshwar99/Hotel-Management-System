@@ -73,16 +73,16 @@ public class GuestServiceTest {
 				
 		}
 		
-		//update
-		@Test
-		public void updateGuest () {
-			Guest guest=new Guest(5,"Rahul",254356789L,"Rahul@gmail.com","male","ram nagar");
-			
-			repo.save(guest);
-			guest.setGuestContact(666777888999L);;
-		    when(repo.save(any(Guest.class))).thenReturn(guest);
-			assertEquals(guest,service.updateGuest(guest));
-		}
+//		//update
+//		@Test
+//		public void updateGuest () {
+//			Guest guest=new Guest(5,"Rahul",254356789L,"Rahul@gmail.com","male","ram nagar");
+//			
+//			repo.save(guest);
+//			guest.setGuestContact(666777888999L);;
+//		    when(repo.save(any(Guest.class))).thenReturn(guest);
+//			assertEquals(guest,service.updateGuest(guest));
+//		}
 			
 	
 }

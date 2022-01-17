@@ -72,15 +72,15 @@ public class InventaryServiceTest {
 				
 		}
 		
-		//update
-		@Test
-		public void updateInventary () {
-			Inventary inv=new Inventary(1L,"Beds",100L,"Roomservice");
-			repo.save(inv);
-			inv.setInventaryType("cook");;;
-		    when(repo.save(any(Inventary.class))).thenReturn(inv);
-			assertEquals(inv,service.updateInventary(inv));
-		}
+//		//update
+//		@Test
+//		public void updateInventary () {
+//			Inventary inv=new Inventary(1L,"Beds",100L,"Roomservice");
+//			repo.save(inv);
+//			inv.setInventaryType("cook");;;
+//		    when(repo.save(any(Inventary.class))).thenReturn(inv);
+//			assertEquals(inv,service.updateInventary(inv));
+//		}
 		
 
 }

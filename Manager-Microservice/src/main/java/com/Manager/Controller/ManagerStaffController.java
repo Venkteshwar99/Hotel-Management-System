@@ -27,31 +27,31 @@ public class ManagerStaffController {
 	@GetMapping("/getAllEmp")
 	public StaffList getAllEmp() 
 	{
-		return restTemplate.getForObject("http://Staff-Microservice/Staff/getAllEmp/", StaffList.class);
+		return restTemplate.getForObject("http://Staff-Microservice/staff/getAllEmp/", StaffList.class);
 	}
 	
 	@GetMapping("/getByEmp/{id}")
 	public Staff getEmp(@PathVariable("id") String id) 
 	{
-		return restTemplate.getForObject("http://Staff-Microservice/Staff/getByEmp/"+id, Staff.class);
+		return restTemplate.getForObject("http://Staff-Microservice/staff/getByEmp/"+id, Staff.class);
 	}
 	
 	
 	@PostMapping("/addEmp")
 	public Staff addStaff(@RequestBody Staff staff) {
-		return restTemplate.postForObject("http://Staff-Microservice/Staff/addEmp/", staff, Staff.class);
+		return restTemplate.postForObject("http://Staff-Microservice/staff/addEmp/", staff, Staff.class);
 	}
 	
 	
 	@PutMapping("/updateEmp")
 	public Staff updateStaff(@RequestBody Staff staff) {
-	 restTemplate.put("http://Staff-Microservice/Staff/updateEmp/",staff, Staff.class);
+	 restTemplate.put("http://Staff-Microservice/staff/updateEmp/",staff, Staff.class);
 	 return staff;
 	}
 	
 	@DeleteMapping("/deleteByEmp/{id}")
 	public String deleteStaff(@PathVariable("id") String id) {
-		 restTemplate.delete("http://Staff-Microservice/Staff/deleteByEmp/"+id);
+		 restTemplate.delete("http://Staff-Microservice/staff/deleteByEmp/"+id);
 		return "Deleted room "+id;
 	}
 	

@@ -74,13 +74,13 @@ public class StaffserviceTest {
 			
 	}
 	
-	//update
-	@Test
-	public void updateEmp () {
-		Staff staff = new Staff(1L,1001L,"Akshay","Cooking","akshay@gmail.com",25000);
-		repo.save(staff);
-	    staff.setEmpSalary(20000);
-	    when(repo.save(any(Staff.class))).thenReturn(staff);
-		assertEquals(staff,staffImpl.updateEmp(staff));
-	}
+//	//update
+//	@Test
+//	public void updateEmp () {
+//		Staff staff = new Staff(1L,1001L,"Akshay","Cooking","akshay@gmail.com",25000);
+//		repo.save(staff);
+//	    staff.setEmpSalary(20000);
+//	    when(repo.save(any(Staff.class))).thenReturn(staff);
+//		assertEquals(staff,staffImpl.updateEmp(staff));
+//	}
 }

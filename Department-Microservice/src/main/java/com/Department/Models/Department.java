@@ -3,10 +3,11 @@ package com.Department.Models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// Maps Entity class objects to JSON formatted Documents
 @Document(collection="Department Details")
 public class Department {
 	
-	@Id
+	@Id       
 	private long departmentID;
 	private String departmentName;
 	private String desc;

@@ -1,7 +1,10 @@
 package com.Owner.Controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +40,7 @@ public class OwnerDepartmentController {
 	
 	@GetMapping("/findAll")
 	public DepartmentList getAlldept(){
-		return restTemplate.getForObject("http://Department-Microservice/department/findAll/", DepartmentList.class);
+	return restTemplate.getForObject("http://Department-Microservice/department/findAll/", DepartmentList.class);
 	}
 	
 	@GetMapping("/findById/{id}")
@@ -46,18 +49,18 @@ public class OwnerDepartmentController {
 		return restTemplate.getForObject("http://Department-Microservice/department/findById/"+id, Department.class);
 		
 	}
-	@PutMapping("/update")
-	public Department updateRoom(@RequestBody Department dept)
+	@PutMapping("/update/{id}")
+	public void updateDepartment(@RequestBody Department dept, @PathVariable long id)
 	{
-		restTemplate.put("http://Department-Microservice/department/update",dept, Department.class);
-		return dept;
+		restTemplate.put("http://Department-Microservice/department/update/"+id,dept, Department.class);
+		
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public String deleteDepartment(@PathVariable("id") String id) 
-	{
+	{ 
 		restTemplate.delete("http://Department-Microservice/department/delete/"+id);
-		return "Deleted room "+id;
+		return "Deleted department"+id;
 	}
 		
 	

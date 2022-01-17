@@ -16,11 +16,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.Receptionist.Models.Reservation;
 import com.Receptionist.Models.ReservationList;
+import com.Receptionist.Models.Room;
 
 
 
 @RestController
-@RequestMapping("/reception/reservation")
+@RequestMapping("/receptionist/reservation")
 public class ReceptionReservationController {
 	
 	@Autowired
@@ -39,12 +40,15 @@ public class ReceptionReservationController {
 	}
 
 
-	@PutMapping("/updateReservation")
-	public Reservation updateReservation(@RequestBody Reservation book)
+	@PutMapping("/update/{id}")
+	public void updateReservation(@RequestBody Reservation book, @PathVariable long id)
 	{
-		rest.put("http://Reservation-Microservice/reservation/updateReservation/", book,Reservation.class);
-		return book;
+		rest.put("http://Reservation-Microservice/reservation/update/"+id,book, Reservation.class);
+		
 	}
+	
+		
+	
 	
 
 	@DeleteMapping("/cancelReservation/{id}")

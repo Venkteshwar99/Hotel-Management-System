@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Guest {
 
 	@Id
-	private int guestId;
+	private long guestId;
 	private String guestName;
 	private long guestContact;
 	private String guestEmail;
@@ -15,11 +15,11 @@ public class Guest {
 	
 	
 	
-	public int getGuestId() {
+	public long getGuestId(long id) {
 		return guestId;
 	}
-	public void setGuestId(int guestId) {
-		this.guestId = guestId;
+	public void setGuestId(long id) {
+		this.guestId = id;
 	}
 	public String getGuestName() {
 		return guestName;

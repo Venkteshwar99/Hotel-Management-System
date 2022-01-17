@@ -11,8 +11,28 @@ private Long bookingId;
 	private Long roomId;
 	private String checkin;
 	private String checkout;
+	private String noOfNight;
 	private int numOfGuests;
 	private double finalPrice;
+	
+	
+	public Reservation(Long bookingId, Long roomId, String checkin, String checkout, String noOfNight, int numOfGuests,
+			double finalPrice) {
+		super();
+		this.bookingId = bookingId;
+		this.roomId = roomId;
+		this.checkin = checkin;
+		this.checkout = checkout;
+		this.noOfNight = noOfNight;
+		this.numOfGuests = numOfGuests;
+		this.finalPrice = finalPrice;
+	}
+	public String getNoOfNight() {
+		return noOfNight;
+	}
+	public void setNoOfNight(String noOfNight) {
+		this.noOfNight = noOfNight;
+	}
 	public Long getBookingId() {
 		return bookingId;
 	}
@@ -49,15 +69,7 @@ private Long bookingId;
 	public void setFinalPrice(double finalPrice) {
 		this.finalPrice = finalPrice;
 	}
-	public Reservation(Long bookingId, Long roomId, String checkin, String checkout, int numOfGuests, double finalPrice) {
-		super();
-		this.bookingId = bookingId;
-		this.roomId = roomId;
-		this.checkin = checkin;
-		this.checkout = checkout;
-		this.numOfGuests = numOfGuests;
-		this.finalPrice = finalPrice;
-	}
+	
 	public Reservation() {
 		super();
 		

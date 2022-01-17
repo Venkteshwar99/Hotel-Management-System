@@ -15,8 +15,8 @@ public interface Staffservice {
 
 	Optional<Staff> getEmp(long parseLong);
 
-	Staff updateEmp(Staff emp);
-
 	String deleteEmp(long parseLong);
+
+	void updateEmp(Staff emp, long id);
 
 }

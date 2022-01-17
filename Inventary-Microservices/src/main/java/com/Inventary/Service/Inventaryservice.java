@@ -17,7 +17,7 @@ public interface Inventaryservice {
 
 	Optional<Inventary> getInventary(long parseLong);
 
-	Inventary updateInventary(Inventary inv);
+	Inventary updateInventary(Inventary inv, long id);
 
 	String deleteInventary(long parseLong);
 

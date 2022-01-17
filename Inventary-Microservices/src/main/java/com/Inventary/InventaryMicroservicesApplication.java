@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-@EnableEurekaClient
+@EnableEurekaClient//Spring Boot application act as a Eureka client
 public class InventaryMicroservicesApplication {
 
 	public static void main(String[] args) {

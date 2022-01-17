@@ -12,7 +12,7 @@ spring:
       - id: Owner-Microservice
         uri: http://localhost:8081/
         predicates:
-        - Path=/owner/department/**
+        - Path=/owner/**
        
     
       - id: managerModule

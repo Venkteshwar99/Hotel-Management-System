@@ -9,13 +9,13 @@ public interface ReservationService {
 
 	String addReservation(Reservation book);
 
-	Reservation updateReservation(Reservation book);
-
-	String deleteReservation(long parseLong);
+	Reservation updateReservation(Reservation book, long id);
 
 	List<Reservation> getResList();
 
 	Optional<Reservation> getReservation(long parseLong);
+
+	String deleteReservation(long parseLong);
 
 	
 

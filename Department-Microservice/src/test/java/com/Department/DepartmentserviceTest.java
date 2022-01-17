@@ -79,7 +79,7 @@ public class DepartmentserviceTest {
 			repo.save(dept);
 			dept.setNo_of_Emp(20);
 		    when(repo.save(any(Department.class))).thenReturn(dept);
-			assertEquals(dept,service.updateDepartment(dept));
+			assertEquals(dept,service.updateDepartment(dept,dept.getDepartmentID()));
 		}
 		
 		

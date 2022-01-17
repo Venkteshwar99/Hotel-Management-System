@@ -12,11 +12,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.Room.Models.Room;
 import com.Room.Repository.RoomMongodbRepos;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 public class RoomserviceImplTest {
     @Mock
 	private RoomMongodbRepos roomMongodbRepo;
@@ -52,15 +54,15 @@ public class RoomserviceImplTest {
 
 	}
 
-	@Test
-	void testUpdateRoom() {
-
-		  Room room = new Room (101L,1200,"Deluxe","Deluxe Room",false);
-		  roomMongodbRepo.save(room);
-		  room.setRoomCharges(1000);
-		  when( roomMongodbRepo.save(any(Room.class))).thenReturn(room);
-		   assertEquals(room,roomServiceImpl.updateRoom(room));
-	}
+//	@Test
+//	void testUpdateRoom() {
+//
+//		  Room room = new Room (101L,1200,"Deluxe","Deluxe Room",false);
+//		  roomMongodbRepo.save(room);
+//		  room.setRoomCharges(1000);
+//		  when( roomMongodbRepo.save(any(Room.class))).thenReturn(room);
+//		   assertEquals(room,roomServiceImpl.updateRoom(room));
+//	}
 
 	@Test
 	void testDeleteRoom() {

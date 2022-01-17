@@ -30,12 +30,15 @@ public class ManagerRoomController {
 		return restTemplate.postForObject("http://Room-Microservice/rooms/addRoom/", room, Room.class);
 	}
 	
-	
-	@PutMapping("/updateRoom")
-	public Room updateRoom(@RequestBody Room room) {
-	 restTemplate.put("http://Room-Microservice/rooms/updateRoom/",room, Room.class);
-	 return room;
+
+	@PutMapping("/update/{id}")
+	public void updateRoom(@RequestBody Room room, @PathVariable long id)
+	{
+		restTemplate.put("http://Room-Microservice/rooms/update/"+id,room, Room.class);
+		
 	}
+	
+	
 	
 	@DeleteMapping("/delete/{id}")
 	public String deleteRoom(@PathVariable("id") String id) {

@@ -4,6 +4,7 @@ package com.Manager.Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +30,7 @@ public class ManagerController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-//Creating/Adding Manager
+//Creating post mapping to add manager Details
 	
 	@PostMapping("/addManager")
 	private ResponseEntity<?> saveOwnerInfo(@RequestBody ManagerInfo managerInfo) {
@@ -55,7 +56,7 @@ public class ManagerController {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 		} catch (Exception e) {
-			return ResponseEntity.ok(new ManagerAuthResponse("Error during Manager Authentication" + email));
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ManagerAuthResponse("Login Failed") );
 		}
 		return ResponseEntity.ok(new ManagerAuthResponse("Successfully Authenticated Manager" + email));
 	}

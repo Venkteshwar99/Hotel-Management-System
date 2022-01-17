@@ -23,7 +23,7 @@ public interface Departmentservice {
 
 	Optional<Department> getDepartment(long parseLong);
 
-	Department updateDepartment(Department dept);
+	Department updateDepartment(Department dept,long id);
 
 	String deleteDepartment(long parseLong);
 

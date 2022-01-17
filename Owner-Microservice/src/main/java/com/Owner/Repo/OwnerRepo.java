@@ -4,10 +4,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.Owner.Models.OwnerInfo;
 
-public interface OwnerRepo extends MongoRepository<OwnerInfo, String> {
+public interface OwnerRepo extends MongoRepository<OwnerInfo , String> {
+	
+	
 
-	OwnerInfo findByEmail(String email);
-		
-	
-	
+	OwnerInfo findByemail(String email);
+
 }
